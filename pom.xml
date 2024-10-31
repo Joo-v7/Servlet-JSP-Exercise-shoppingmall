@@ -112,6 +112,12 @@
             <version>0.8.10</version>
         </dependency>
 
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
         <!--        <dependency>-->
         <!--            <groupId>org.apache.maven.plugins</groupId>-->
         <!--            <artifactId>maven-compiler-plugin</artifactId>-->

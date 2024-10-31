@@ -53,7 +53,7 @@ class UserServiceImplTest {
         Mockito.when(userRepository.countByUserId(anyString())).thenReturn(0);
         Mockito.when(userRepository.save(any())).thenReturn(1);
         userService.saveUser(testUser);
-        Mockito.verify(userRepository,Mockito.times(1)).countByUserId(anyString());
+        Mockito.verify(userRepository,Mockito.times(1)).countByUserId(anyString()); // countByUserId 메소드가 정확히 1번 호출되었는지 검증하는 코드.
         Mockito.verify(userRepository,Mockito.times(1)).save(any());
 
     }
