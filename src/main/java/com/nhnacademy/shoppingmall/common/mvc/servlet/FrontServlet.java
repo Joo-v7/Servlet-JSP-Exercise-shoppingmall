@@ -55,11 +55,12 @@ public class FrontServlet extends HttpServlet {
             }else {
                 String layout = viewResolver.getLayOut(viewName);
 
-                // login하면 layout 변경.
                 HttpSession session = req.getSession(false);
-                if(Objects.nonNull(session) && session.getAttribute("user")!=null){
-                    layout = viewResolver.USER_SHOP_LAYOUT;
+                User user = null;
+                if(Objects.nonNull(session)){
+                    user = (User) session.getAttribute("user");
                 }
+                req.setAttribute("user",user);
 
                 log.debug("layout222:{}",layout);
                 req.setAttribute(ViewResolver.LAYOUT_CONTENT_HOLDER, viewResolver.getPath(viewName));

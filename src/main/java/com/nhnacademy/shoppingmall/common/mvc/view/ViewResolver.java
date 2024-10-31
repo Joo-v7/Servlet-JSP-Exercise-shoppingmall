@@ -16,7 +16,6 @@ public class ViewResolver {
     public static final String DEFAULT_SHOP_LAYOUT="/WEB-INF/views/layout/shop.jsp";
     public static final String DEFAULT_ADMIN_LAYOUT="/WEB-INF/views/layout/admin.jsp";
     public static final String LAYOUT_CONTENT_HOLDER = "layout_content_holder";
-    public static final String USER_SHOP_LAYOUT = "/WEB-INF/views/layout/user_shop.jsp";
 
     private final String prefix;
     private final String postfix;
