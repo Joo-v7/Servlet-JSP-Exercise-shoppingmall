@@ -8,6 +8,8 @@ import com.nhnacademy.shoppingmall.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -88,6 +90,16 @@ public class UserServiceImpl implements UserService {
         }catch(Exception e){
             throw new UserNotFoundException(userId);
         }
+    }
+
+    @Override
+    public List<User> getUserList(String auth) {
+        if(Objects.isNull(auth)){
+            throw new IllegalArgumentException("auth is null");
+        }
+        List<User> userList = new ArrayList<>();
+        userList = userRepository.userList(auth);
+        return userList;
     }
 
 }

@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 @Slf4j
-@RequestMapping(method=RequestMapping.Method.POST, value="/mypage/address/delete.do")
-public class AddressDeleteController implements BaseController {
+@RequestMapping(method=RequestMapping.Method.POST, value="/mypage/address/update.do")
+public class AddressUpdateController implements BaseController {
 
     private final AddressService addressService = new AddressServiceImpl(new AddressRepositoryImpl());
 
@@ -31,9 +31,12 @@ public class AddressDeleteController implements BaseController {
             if(Objects.isNull(user)){
                 return "error/alertError";
             }else {
-                String deleteAddress = req.getParameter("deleteAddress");
-                log.debug("deleteAddress:{}", deleteAddress);
-                addressService.deleteAddress(deleteAddress, user.getUserId());
+                String updateAddress = req.getParameter("updateAddress");
+                log.debug("updateAddress:{}", updateAddress);
+                String addressId = req.getParameter("addressId");
+                addressService.updateAddress(
+                        new Address(addressId, updateAddress, user.getUserId())
+                );
                 try {
                     resp.sendRedirect("/mypage/address/list.do");
                 } catch (IOException e) {

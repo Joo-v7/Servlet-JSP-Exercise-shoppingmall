@@ -62,14 +62,15 @@ public class AddressRepositoryImpl implements AddressRepository {
     }
 
     @Override
-    public int delete(Address address) {
+    public int delete(String address, String userId) {
         Connection connection = DbConnectionThreadLocal.getConnection();
-        String sql = "delete from address where address_id=?";
+        String sql = "delete from address where address=? and user_id=?";
 
         try (
                 PreparedStatement statement = connection.prepareStatement(sql);
                 ){
-            statement.setString(1, address.getAddressId());
+            statement.setString(1, address);
+            statement.setString(2, userId);
             int result = statement.executeUpdate();
             return result;
         }catch(SQLException e) {

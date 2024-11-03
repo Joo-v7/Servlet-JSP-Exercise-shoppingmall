@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface AddressRepository {
     List<Address> findByUserId(String userId);
     int save(Address address);
-    int delete(Address address);
+    int delete(String address, String userId);
     int update(Address address);
 
 }

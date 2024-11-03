@@ -41,6 +41,7 @@ public class ModifyPostController implements BaseController {
             }else {
                 User user = new User(id, name, pw, birth, User.Auth.valueOf(auth), point, createdAt, latestLoginAt);
                 userService.updateUser(user);
+                req.getSession().setAttribute("user", user);
                 try {
                     resp.sendRedirect("/mypage/myinfo/view.do");
                 }catch(IOException e){

@@ -38,11 +38,13 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/index.do" class="nav-link px-2 text-secondary">상품 관리</a></li>
-          <li><a href="/mypage.do" class="nav-link px-2 text-white">유저 목록</a></li>
+          <li><a href="/index.do" class="nav-link px-2 text-white">Home</a></li>
+          <li><a href="/mypage/myinfo/view.do" class="nav-link px-2 text-white">마이페이지</a></li>
+          <li><a href="/admin/user/list/user.do" class="nav-link px-2 text-white">유저 목록</a></li>
+          <li><a href="/admin/product/list.do" class="nav-link px-2 text-white">상품 관리</a></li>
         </ul>
 
-        <div class="text-end">--%>
+        <div class="text-end">
           <a class="btn btn-outline-light me-2" href="/login.do" >로그아웃</a>
         </div>
 

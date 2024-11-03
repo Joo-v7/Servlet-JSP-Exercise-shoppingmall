@@ -109,19 +109,20 @@
 
         <!-- 주소 목록 출력 -->
         <div class="address-list">
-            <c:forEach var="address" items="${addressList}">
+            <c:forEach var="address" items="${addressList}" varStatus="status">
                 <c:if test="${empty address}">
                     <h1>등록된 주소가 없습니다.</h1>
                 </c:if>
                 <div class="form-floating">
+                    ${status.count}
                     <div class="address-info">
-                           ${address.address}
                         <form method="POST" action="/mypage/address/update.do" style="display:inline;">
-                            <input type="hidden" name="addressId" value="${address.address}" />
+                            <input type="text" name="updateAddress" value="${address.address}" />
+                            <input type="hidden" name="addressId" value="${address.addressId}" />
                             <button type="submit" class="btn btn-secondary">수정</button>
                         </form>
                         <form method="POST" action="/mypage/address/delete.do" style="display:inline;">
-                            <input type="hidden" name="addressId" value="${address.address}" />
+                            <input type="hidden" name="deleteAddress" value="${address.address}" />
                             <button type="submit" class="btn btn-danger">삭제</button>
                         </form>
                     </div>

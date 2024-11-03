@@ -40,11 +40,11 @@ public class AddressServiceImpl implements AddressService {
         addressRepository.update(address);
     }
 
-    public void deleteAddress(Address address) {
+    public void deleteAddress(String address, String userId) {
         if(Objects.isNull(address)){
             throw new IllegalArgumentException("addressId is null");
         }
 
-        addressRepository.delete(address);
+        addressRepository.delete(address, userId);
     }
 }

@@ -98,7 +98,6 @@
 
     </div>
 
-    <!-- 콘텐츠 영역 -->
     <div id="myInfo" class="content active">
         <h2>내 정보</h2><br>
         <p>닉네임: ${user.userName}</p><br>

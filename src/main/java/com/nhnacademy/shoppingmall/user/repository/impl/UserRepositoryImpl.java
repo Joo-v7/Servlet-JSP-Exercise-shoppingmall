@@ -1,5 +1,6 @@
 package com.nhnacademy.shoppingmall.user.repository.impl;
 
+import com.mysql.cj.protocol.Resultset;
 import com.nhnacademy.shoppingmall.common.mvc.transaction.DbConnectionThreadLocal;
 import com.nhnacademy.shoppingmall.user.domain.User;
 import com.nhnacademy.shoppingmall.user.exception.UserAlreadyExistsException;
@@ -9,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -206,6 +209,37 @@ public class UserRepositoryImpl implements UserRepository {
             throw new RuntimeException(e);
         }
         return 0;
+    }
+
+    // userAuth 별로 리스트 내림차순으로 가져옴.
+    @Override
+    public List<User> userList(String auth){
+        Connection connection = DbConnectionThreadLocal.getConnection();
+        String sql = "select * from users where user_auth=? ORDER BY created_at DESC";
+        List<User> userList = new ArrayList<>();
+        try (
+                PreparedStatement statement = connection.prepareStatement(sql)
+                ){
+            statement.setString(1, auth);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                LocalDateTime ldt = Objects.isNull(rs.getTimestamp("latest_login_at")) ? null : rs.getTimestamp("latest_login_at").toLocalDateTime();
+                User user = new User(
+                        rs.getString("user_id"),
+                        rs.getString("user_name"),
+                        rs.getString("user_password"),
+                        rs.getString("user_birth"),
+                        User.Auth.valueOf(rs.getString("user_auth")),
+                        rs.getInt("user_point"),
+                        rs.getTimestamp("created_at").toLocalDateTime(),
+                        ldt
+                );
+                userList.add(user);
+            }
+            return userList;
+        }catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

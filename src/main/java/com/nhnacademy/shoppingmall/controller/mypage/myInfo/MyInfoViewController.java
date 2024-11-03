@@ -30,7 +30,7 @@ public class MyInfoViewController implements BaseController {
             if(Objects.isNull(user)) {
                 return "shop/login/login_form";
             }else {
-                user = userService.doLogin(user.getUserId(), user.getUserPassword());
+
                 req.setAttribute("user", user);
                 log.debug("mypage user info:{}", user.toString());
                 return "shop/mypage/myinfo/view";
